@@ -1,5 +1,6 @@
 package com.klezovich.springbootcoaching.arthur.controller;
 
+import com.klezovich.springbootcoaching.arthur.controller.dto.AddNoteCommentDto;
 import com.klezovich.springbootcoaching.arthur.controller.dto.CreateNoteDto;
 import com.klezovich.springbootcoaching.arthur.entity.Note;
 import com.klezovich.springbootcoaching.arthur.service.NoteService;
@@ -28,6 +29,12 @@ public class NoteController {
         log.info("Create note request received by controller");
         noteService.createNote(dto.getNoteId(), dto.getNoteText());
         return true;
+    }
+
+    @PostMapping("/add_comment")
+    public void addCommentToNote(@RequestBody AddNoteCommentDto dto) {
+        log.info("Adding comment to a note");
+        noteService.addComment(dto.getNoteId(), dto.getCommentText());
     }
 
     @GetMapping("/get")

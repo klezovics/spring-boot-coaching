@@ -3,6 +3,9 @@ package com.klezovich.springbootcoaching.arthur.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Note {
@@ -12,6 +15,9 @@ public class Note {
     private Long id;
     private String noteId;
     private String noteText;
+
+    @OneToMany(mappedBy = "note" )
+    private List<NoteComment> comments = new ArrayList<>();
 
     public Note() {}
 
@@ -44,5 +50,11 @@ public class Note {
         this.noteText = noteText;
     }
 
+    public List<NoteComment> getComments() {
+        return comments;
+    }
 
+    public void setComments(List<NoteComment> comments) {
+        this.comments = comments;
+    }
 }
