@@ -3,6 +3,7 @@ package com.klezovich.springbootcoaching.arthur.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,9 @@ public class Note {
 
     @OneToMany(mappedBy = "note" )
     private List<NoteComment> comments = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "collectionNotes")
+    private List<NoteCollection> noteCollections = new ArrayList<>();
 
     public Note() {}
 
