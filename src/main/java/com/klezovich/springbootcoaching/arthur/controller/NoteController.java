@@ -2,7 +2,7 @@ package com.klezovich.springbootcoaching.arthur.controller;
 
 import com.klezovich.springbootcoaching.arthur.controller.dto.AddNoteCommentDto;
 import com.klezovich.springbootcoaching.arthur.controller.dto.CreateNoteDto;
-import com.klezovich.springbootcoaching.arthur.entity.Note;
+import com.klezovich.springbootcoaching.arthur.controller.dto.NoteDto;
 import com.klezovich.springbootcoaching.arthur.service.NoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +25,9 @@ public class NoteController {
     public NoteController(NoteService noteService) {this.noteService = noteService;}
 
     @PostMapping("/create")
-    public boolean createNote(@RequestBody CreateNoteDto dto) {
+    public void createNote(@RequestBody CreateNoteDto dto) {
         log.info("Create note request received by controller");
         noteService.createNote(dto.getNoteId(), dto.getNoteText());
-        return true;
     }
 
     @PostMapping("/add_comment")
@@ -38,7 +37,7 @@ public class NoteController {
     }
 
     @GetMapping("/get")
-    public Note getNote(@RequestParam("noteId") String noteId) {
-        return noteService.findNoteById(noteId);
+    public NoteDto getNote(@RequestParam("noteId") String noteId) {
+        return NoteDto.fromNote(noteService.findNoteById(noteId));
     }
 }

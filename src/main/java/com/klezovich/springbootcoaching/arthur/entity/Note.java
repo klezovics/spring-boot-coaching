@@ -61,4 +61,12 @@ public class Note {
     public void setComments(List<NoteComment> comments) {
         this.comments = comments;
     }
+
+    public List<NoteCollection> getNoteCollections() {
+        return noteCollections;
+    }
+
+    public void setNoteCollections(List<NoteCollection> noteCollections) {
+        this.noteCollections = noteCollections;
+    }
 }
